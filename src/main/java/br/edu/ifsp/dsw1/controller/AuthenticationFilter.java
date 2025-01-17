@@ -12,7 +12,7 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
-@WebFilter(urlPatterns = {"/loggedin/*", "/pedido.do"})
+@WebFilter(urlPatterns = {"/logado/*"})
 public class AuthenticationFilter implements Filter {
 
 	@Override
@@ -22,7 +22,7 @@ public class AuthenticationFilter implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpSession session = httpRequest.getSession(false);
 		
-		if (session != null && session.getAttribute("user_id") != null) {
+		if (session != null && session.getAttribute("user") != null) {
 			chain.doFilter(request, response);
 		} else {
 			request.setAttribute("message", "Acesso Negado. Realize Login.");

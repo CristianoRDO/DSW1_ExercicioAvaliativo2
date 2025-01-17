@@ -9,7 +9,7 @@ import javax.sql.DataSource;
 
 public class DatabaseConnection {
 	
-	private static final String URL = "jdbc:mysql://localhost:3306/contacts_db";
+	//private static final String URL = "jdbc:mysql://localhost:3307/pedidos_db";
 
 	private DatabaseConnection() {
 	}

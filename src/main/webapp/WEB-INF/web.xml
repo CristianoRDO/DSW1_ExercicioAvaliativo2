@@ -14,4 +14,14 @@
     <servlet-name>FrontServlet</servlet-name>
     <url-pattern>/FrontServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ApplicationServlet</display-name>
+    <servlet-name>ApplicationServlet</servlet-name>
+    <servlet-class>br.edu.ifsp.dsw1.controller.ApplicationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ApplicationServlet</servlet-name>
+    <url-pattern>/ApplicationServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
