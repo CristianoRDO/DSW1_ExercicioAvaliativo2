@@ -2,7 +2,7 @@ package br.edu.ifsp.dsw1.model.entity;
 
 public class Pedido {
 	
-	private int idProduto;
+	private int idPedido;
 	private String nomeCliente;
 	private String endereco;
 	private String descricao;
@@ -10,19 +10,19 @@ public class Pedido {
 	
 	public Pedido(){}
 	
-	public Pedido(int idProduto, String nomeCliente, String endereco, String descricao, double valor) {
-		this.idProduto = idProduto;
+	public Pedido(int idPedido, String nomeCliente, String endereco, String descricao, double valor) {
+		this.idPedido = idPedido;
 		this.nomeCliente = nomeCliente;
 		this.endereco = endereco;
 		this.descricao = descricao;
 		this.valor = valor;
 	}
 	
-	public int getIdProduto() {
-		return idProduto;
+	public int getIdPedido() {
+		return idPedido;
 	}
-	public void setIdProduto(int idProduto) {
-		this.idProduto = idProduto;
+	public void setIdProduto(int idPedido) {
+		this.idPedido = idPedido;
 	}
 	public String getNomeCliente() {
 		return nomeCliente;

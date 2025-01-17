@@ -3,7 +3,7 @@ package br.edu.ifsp.dsw1.model.dao;
 import java.sql.SQLException;
 
 import br.edu.ifsp.dsw1.model.dao.connection.DatabaseConnection;
-//import br.edu.ifsp.dsw1.model.entity.Pedido;
+import br.edu.ifsp.dsw1.model.entity.Pedido;
 import br.edu.ifsp.dsw1.model.entity.User;
 
 class DatabaseUserDao implements UserDao {
@@ -35,12 +35,28 @@ class DatabaseUserDao implements UserDao {
 	public User findByEmail(String email) {
 		User user = null;
 		try ( var connection = DatabaseConnection.getConnection();
-			  var statement = connection.prepareStatement(SELECT_BY_EMAIL)) {
+			  var statement = connection.prepareStatement(SELECT_BY_EMAIL);
+			  var pedidoStatement = connection.prepareStatement("SELECT * FROM tb_pedidos WHERE user = ?")) {
 			
 			statement.setString(1, email);
 			var resultSet = statement.executeQuery();
 			if (resultSet.next()) {
 				user = new User(resultSet.getString("name"), resultSet.getString("email"), resultSet.getString("password"));
+				
+				pedidoStatement.setString(1, email);
+	            var pedidoResultSet = pedidoStatement.executeQuery();
+
+	            while (pedidoResultSet.next()) {
+	                Pedido pedido = new Pedido(
+	                		pedidoResultSet.getInt("id_pedido"),
+	                		pedidoResultSet.getString("nome_cliente"),
+	                		pedidoResultSet.getString("endereco"),
+	                		pedidoResultSet.getString("descricao"),
+	                		pedidoResultSet.getDouble("valor")
+	                );
+	                
+	                user.getPedidos().add(pedido);
+	            }
 			}
 			
 		} catch (SQLException e) {

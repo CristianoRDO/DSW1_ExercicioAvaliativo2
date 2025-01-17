@@ -1,6 +1,7 @@
 package br.edu.ifsp.dsw1.model.entity;
 
 import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -38,17 +39,17 @@ public class User {
 		this.password = password;
 	}
 	
-	/*public void addPedido(Pedido pedido) {
-		
-	}*/
+	public void addPedido(Pedido pedido) {
+		pedidos.add(new Pedido(pedido.getIdPedido(), pedido.getNomeCliente(), pedido.getEndereco(), pedido.getDescricao(), pedido.getValor()));
+	}
 	
-	/*public List<Pedido> getPedidos() {
+	public List<Pedido> getPedidos() {
 		return new ArrayList<Pedido>(pedidos);
-	}*/
+	}
 	
-	/*public void clearPedidos() {
+	public void clearPedidos() {
 		pedidos.clear();
-	}*/
+	}
 	
 	public static boolean autenticate(User userFromSystem, String email, String password) {
 		if (userFromSystem != null) {
