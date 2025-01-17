@@ -9,7 +9,7 @@ import br.edu.ifsp.dsw1.model.entity.User;
 
 public class DatabasePedidoDao implements PedidoDao{
 	
-	private static final String INSERT = "INSERT INTO tb_pedidos (name_cliente, endereco, valor, descricao, user) VALUES (?, ?, ?, ?)";
+	private static final String INSERT = "INSERT INTO tb_pedidos (name_cliente, endereco, valor, descricao, user) VALUES (?, ?, ?, ?, ?)";
 	private static final String UPDATE = "UPDATE tb_pedidos SET name_cliente = ?, endereco = ?, valor = ?, descricao = ? WHERE id_pedido = ?";
 	private static final String DELETE = "DELETE FROM tb_pedidos WHERE id_pedido = ?";
 	

@@ -25,7 +25,7 @@
 			}
 		%>
 		
-		<form class="bg-white p-4 rounded-3 shadow" action="#" method="post">
+		<form class="bg-white p-4 rounded-3 shadow" action="application.do?action=registerOrder" method="post">
 			<div class="mb-3">
 				<label for="name" class="form-label">Nome do Cliente:</label> 
 				<input type="text"

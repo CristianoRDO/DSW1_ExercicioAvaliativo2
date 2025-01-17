@@ -3,6 +3,8 @@ package br.edu.ifsp.dsw1.controller.command;
 import java.io.IOException;
 
 import br.edu.ifsp.dsw1.model.entity.User;
+import br.edu.ifsp.dsw1.model.dao.PedidoDao;
+import br.edu.ifsp.dsw1.model.dao.PedidoDaoFactory;
 import br.edu.ifsp.dsw1.model.entity.Pedido;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,13 +19,13 @@ public class RegisterOrderCommand implements Command{
 		var name = request.getParameter("name");
 		var endereco = request.getParameter("endereco");
 		var descricao = request.getParameter("descricao");
-		var valor = request.getParameter("valor");
+		var valor = Double.parseDouble(request.getParameter("valor"));
 		
-		var user = (User) request.getSession(false).getAttribute("user_id");
+		var user = (User) request.getSession(false).getAttribute("user");
 		
 		PedidoDao dao = new PedidoDaoFactory().factory();
 		
-		Pedido pedido = new Pedido(name, fone, email);
+		Pedido pedido = new Pedido(name, endereco, descricao, valor);
 		boolean saved = dao.create(user, pedido);
 		
 		String mensagem;
@@ -36,7 +38,7 @@ public class RegisterOrderCommand implements Command{
 		request.setAttribute("mensagem", mensagem);
 		request.setAttribute("saved", saved);
 		
-		return "/loggedin/contact_form.jsp";
+		return "/logado/new_order_form.jsp";
 	}
 
 }

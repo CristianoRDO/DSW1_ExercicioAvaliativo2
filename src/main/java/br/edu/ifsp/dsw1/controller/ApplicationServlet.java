@@ -8,28 +8,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import br.edu.ifsp.dsw1.controller.command.Command;
+import br.edu.ifsp.dsw1.controller.command.RegisterOrderCommand;
 import br.edu.ifsp.dsw1.controller.command.RegisterOrderFormCommand;
 import br.edu.ifsp.dsw1.controller.command.RegisterUserCommand;
 import br.edu.ifsp.dsw1.controller.command.RegisterUserFormCommand;
 import br.edu.ifsp.dsw1.controller.command.ErrorCommand;
 import br.edu.ifsp.dsw1.controller.command.LoggedCommand;
 import br.edu.ifsp.dsw1.controller.command.LogoutCommand;
-
-/*import br.edu.ednilsonrossi.controller.command.ChangeThemeCommand;
-import br.edu.ednilsonrossi.controller.command.Command;
-import br.edu.ednilsonrossi.controller.command.DeleteContactCommand;
-import br.edu.ednilsonrossi.controller.command.DeleteUserCommand;
-import br.edu.ednilsonrossi.controller.command.ErrorCommand;
-import br.edu.ednilsonrossi.controller.command.FormContactCommand;
-import br.edu.ednilsonrossi.controller.command.FormUpdateContactCommand;
-import br.edu.ednilsonrossi.controller.command.ListContactsCommand;
-import br.edu.ednilsonrossi.controller.command.LoggedCommand;
-import br.edu.ednilsonrossi.controller.command.LogoffCommand;
-import br.edu.ednilsonrossi.controller.command.SaveContactCommand;
-import br.edu.ednilsonrossi.controller.command.SearchContactCommand;
-import br.edu.ednilsonrossi.controller.command.UpdateContactCommand;
-import br.edu.ednilsonrossi.controller.command.UpdateUserCommand;
-import br.edu.ednilsonrossi.controller.command.UserPerfilCommand;*/
 
 
 @WebServlet("/application.do")
@@ -56,7 +41,9 @@ public class ApplicationServlet extends HttpServlet {
 			command = new RegisterOrderFormCommand();
 		} else if("registerUser".equals(action)) {
 			command = new RegisterUserCommand();
-		}else if ("logout".equals(action)) {
+		} else if("registerOrder".equals(action)) {
+			command = new RegisterOrderCommand();
+		} else if ("logout".equals(action)) {
 			command = new LogoutCommand();
 		}/* else if ("newContact".equals(action)) {
 			command = new SaveContactCommand();
