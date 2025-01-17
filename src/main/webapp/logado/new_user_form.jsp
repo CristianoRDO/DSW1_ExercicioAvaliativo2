@@ -9,8 +9,23 @@
 	<main class="container-sm flex-grow-1  justify-content-center">
 		<h1 style="text-align: center; margin: 30px;">Cadastrar Usuário</h1>
 		
-
-		<form class="bg-white p-4 rounded-3 shadow" action="#" method="post">
+		<%
+			String msg = (String) request.getAttribute("mensagem");
+		
+			if (msg != null ) {
+				boolean success = (Boolean) request.getAttribute("saved");
+				
+				if (success) {
+					out.println("<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">");
+				} else {
+					out.println("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">");
+				}
+				out.println(msg);
+				out.println("<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>");
+			}
+		%>
+		
+		<form class="bg-white p-4 rounded-3 shadow" action="application.do?action=registerUser" method="post">
 			<div class="mb-3">
 				<label for="name" class="form-label">Nome:</label> 
 				<input type="text"

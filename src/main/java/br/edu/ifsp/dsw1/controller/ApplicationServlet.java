@@ -8,7 +8,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import br.edu.ifsp.dsw1.controller.command.Command;
-import br.edu.ifsp.dsw1.controller.command.FormRegisterUserCommand;
+import br.edu.ifsp.dsw1.controller.command.RegisterOrderFormCommand;
+import br.edu.ifsp.dsw1.controller.command.RegisterUserCommand;
+import br.edu.ifsp.dsw1.controller.command.RegisterUserFormCommand;
 import br.edu.ifsp.dsw1.controller.command.ErrorCommand;
 import br.edu.ifsp.dsw1.controller.command.LoggedCommand;
 import br.edu.ifsp.dsw1.controller.command.LogoutCommand;
@@ -48,9 +50,13 @@ public class ApplicationServlet extends HttpServlet {
 		
 		if ("logged".equals(action) ) {
 			command = new LoggedCommand();
-		}else if("getNewUserForm".equals(action)) {
-			command = new FormRegisterUserCommand();
-		} else if ("logoff".equals(action)) {
+		} else if("getRegisterUserForm".equals(action)) {
+			command = new RegisterUserFormCommand();
+		} else if("getRegisterOrderForm".equals(action)) {
+			command = new RegisterOrderFormCommand();
+		} else if("registerUser".equals(action)) {
+			command = new RegisterUserCommand();
+		}else if ("logout".equals(action)) {
 			command = new LogoutCommand();
 		}/* else if ("newContact".equals(action)) {
 			command = new SaveContactCommand();

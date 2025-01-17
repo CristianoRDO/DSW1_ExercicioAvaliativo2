@@ -6,12 +6,13 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class FormRegisterOrderCommand implements Command{
+public class RegisterUserFormCommand implements Command{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		return "/logado/new_order_form.jsp";
+		
+		return "/logado/new_user_form.jsp";
 	}
 
 }

@@ -15,8 +15,8 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				<li class="nav-item"><a class="nav-link" href="<%= request.getContextPath() %>/application.do?action=getNewUserForm">Cadastrar Usuario</a></li>
-				<li class="nav-item"><a class="nav-link" href="<%= request.getContextPath() %>/application.do?action=getNewOrderForm">Cadastrar Pedido</a></li>
+				<li class="nav-item"><a class="nav-link" href="<%= request.getContextPath() %>/application.do?action=getRegisterUserForm">Cadastrar Usuario</a></li>
+				<li class="nav-item"><a class="nav-link" href="<%= request.getContextPath() %>/application.do?action=getRegisterOrderForm">Cadastrar Pedido</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">Exibir Pedidos</a></li>
 				<li class="nav-item"><a class="nav-link" href="<%= request.getContextPath() %>/application.do?action=logout">Logout</a></li>
 				<li class="nav-item"><%= user.getName() %></li>
