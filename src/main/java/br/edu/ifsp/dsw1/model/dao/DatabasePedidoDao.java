@@ -121,7 +121,28 @@ public class DatabasePedidoDao implements PedidoDao{
 
 	@Override
 	public Pedido retrieveById(int id) {
-		return null;
+		Pedido pedido = null;
+		
+		try (var connection = DatabaseConnection.getConnection();
+			 var preparedStatement = connection.prepareStatement(SELECT_BY_ID)){
+						
+			preparedStatement.setInt(1, id);
+			var result = preparedStatement.executeQuery();
+
+			if (result.next()) {
+				pedido = new Pedido();
+				pedido.setIdProduto(result.getInt("id_pedido"));
+				pedido.setNomeCliente(result.getString("name_cliente"));
+				pedido.setEndereco(result.getString("endereco"));
+				pedido.setDescricao(result.getString("descricao"));
+				pedido.setValor(result.getDouble("valor"));
+					
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		
+		return pedido;
 	}
 
 }

@@ -25,20 +25,17 @@
 		}
 		%>
 
-		<div class="card" style="margin-top: 24px;">
-			<div class="card-body">
-				<h5>Buscar Pedido</h5>
-				<form action="contact.do?action=searchContact" method="post">
-					<div class="input-group mb-3">
-						<input type="text" class="form-control" name="textName" placeholder="Nome do contato">
-						<button class="btn btn-outline-warning" type="submit" id="button-addon2">Buscar</button>
-					</div>
-				</form>
-			</div>
+		<div style="margin-top: 24px;">
+			<form action="contact.do?action=searchContact" method="post" class = "no-border">
+				<div class="input-group mb-3">
+					<input type="text" class="form-control" name="textName" placeholder="Informe o Nome do Cliente">
+					<button class="btn btn-outline-warning" type="submit" id="button-addon2">Buscar</button>
+				</div>
+			</form>
 		</div>
 
 
-		<h1 style="text-align: center; margin: 30px;">Contatos Cadastrados</h1>
+		<h1 style="text-align: center; margin: 30px;">Pedidos Cadastrados</h1>
 		<table class="table">
 			<thead>
 				<tr>
@@ -68,7 +65,7 @@
 				    </td>
 				    <td>
 				        <a class="btn btn-outline-danger" 
-				           href="#">
+				           href="application.do?action=getUpdateOrderForm&id=<%= pedido.getIdPedido() %>">
 				           Editar
 				        </a>
 				    </td>

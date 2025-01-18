@@ -1,3 +1,4 @@
+<%@page import="br.edu.ifsp.dsw1.model.entity.Pedido"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,10 +11,11 @@
 		<h1 style="text-align: center; margin: 30px;">Atualizar Pedido</h1>
 		
 		<%
-			String msg = (String) request.getAttribute("mensagem");
+			var pedido = (Pedido) request.getAttribute("pedido");
+			//String msg = (String) request.getAttribute("mensagem");
 		
-			if (msg != null ) {
-				boolean success = (Boolean) request.getAttribute("saved");
+			if (pedido != null) {
+				/*boolean success = (Boolean) request.getAttribute("saved");
 				
 				if (success) {
 					out.println("<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">");
@@ -21,35 +23,35 @@
 					out.println("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">");
 				}
 				out.println(msg);
-				out.println("<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>");
+				out.println("<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>");*/
 			}
 		%>
 		
-		<form class="bg-white p-4 rounded-3 shadow" action="application.do?action=registerOrder" method="post">
+		<form class="bg-white p-4 rounded-3 shadow" action="application.do?action=updateOrder" method="post">
 			<div class="mb-3">
 				<label for="name" class="form-label">Nome do Cliente:</label> 
 				<input type="text"
 					class="form-control" id="name" name="name"
-					placeholder="Digite Nome Completo do Cliente." required="required">
+					placeholder="Digite Nome Completo do Cliente." required="required" value = "<%= pedido.getNomeCliente() %>">
 			</div>
 			
 			<div class="mb-3">
 				<label for="email" class="form-label">Endereço de Entrega:</label> 
 				<input type="text" class="form-control" id="endereco" name="endereco"
-					placeholder="Digite o Endereço de Entrega do Cliente." required="required">
+					placeholder="Digite o Endereço de Entrega do Cliente." required="required" value = "<%= pedido.getEndereco() %>">
 			</div>
 			
 			<div class="mb-3">
 				<label for="email" class="form-label">Descrição:</label> 
 				<input type="text" class="form-control" id="descricao" name="descricao" 
-					placeholder="Digite a descrição do Produto." required="required">
+					placeholder="Digite a descrição do Produto." required="required" value = "<%= pedido.getDescricao() %>">
 			</div>
 			
 			<div class="mb-3">
 				<label for="password" class="form-label">Valor:</label> 
 				<input
 					type="number" class="form-control" id="valor" name="valor"
-					placeholder="Digite o Valor do Produto." required="required">
+					placeholder="Digite o Valor do Produto." required="required" value = "<%= pedido.getValor() %>">
 			</div>
 
 			<button type="submit" class="btn btn-warning"

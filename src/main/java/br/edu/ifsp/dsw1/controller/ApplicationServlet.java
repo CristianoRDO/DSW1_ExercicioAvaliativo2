@@ -10,6 +10,8 @@ import java.io.IOException;
 import br.edu.ifsp.dsw1.controller.command.Command;
 import br.edu.ifsp.dsw1.controller.command.ListOrdersCommand;
 import br.edu.ifsp.dsw1.controller.command.DeleteOrderCommand;
+import br.edu.ifsp.dsw1.controller.command.UpdateOrderCommand;
+import br.edu.ifsp.dsw1.controller.command.UpdateOrderFormCommand;
 import br.edu.ifsp.dsw1.controller.command.RegisterOrderCommand;
 import br.edu.ifsp.dsw1.controller.command.RegisterOrderFormCommand;
 import br.edu.ifsp.dsw1.controller.command.RegisterUserCommand;
@@ -37,41 +39,25 @@ public class ApplicationServlet extends HttpServlet {
 		
 		if ("logged".equals(action) ) {
 			command = new LoggedCommand();
+		} else if ("logout".equals(action)) {
+			command = new LogoutCommand();
 		} else if("getRegisterUserForm".equals(action)) {
 			command = new RegisterUserFormCommand();
 		} else if("getRegisterOrderForm".equals(action)) {
 			command = new RegisterOrderFormCommand();
+		} else if ("getUpdateOrderForm".equals(action)) {
+			command = new UpdateOrderFormCommand();
 		} else if("getListOrders".equals(action)) {
 			command = new ListOrdersCommand();
 		} else if("registerUser".equals(action)) {
 			command = new RegisterUserCommand();
 		} else if("registerOrder".equals(action)) {
 			command = new RegisterOrderCommand();
-		} else if ("logout".equals(action)) {
-			command = new LogoutCommand();
-		}else if ("deleteOrder".equals(action)) {
+		} else if ("deleteOrder".equals(action)) {
 			command = new DeleteOrderCommand();
-		}/* else if ("newContact".equals(action)) {
-			command = new SaveContactCommand();
-		} else if ("getForm".equals(action)) {
-			command = new FormContactCommand();
-		}else if ("getFormUpdateContact".equals(action)) {
-				command = new FormUpdateContactCommand();
-		}else if ("delete".equals(action)) {
-			command = new DeleteContactCommand();
-		}else if ("update".equals(action)) {
-			command = new UpdateContactCommand();
-		}else if("searchContact".equals(action)) {
-			command = new SearchContactCommand();
-		} else if ("changeTheme".equals(action)) { 
-			command = new ChangeThemeCommand();
-		} else if("userPerfil".equals(action)) {
-			command = new UserPerfilCommand();
-		} else if("deleteUser".equals(action)) {
-			command = new DeleteUserCommand();
-		} else if("updateUser".equals(action)) {
-			command = new UpdateUserCommand();
-		} */else{
+		} else if ("updateOrder".equals(action)) {
+			command = new UpdateOrderCommand();
+		} else{
 			command = new ErrorCommand();
 		}
 		

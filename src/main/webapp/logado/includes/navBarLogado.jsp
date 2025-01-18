@@ -19,7 +19,7 @@
 				<li class="nav-item"><a class="nav-link" href="<%= request.getContextPath() %>/application.do?action=getRegisterOrderForm">Cadastrar Pedido</a></li>
 				<li class="nav-item"><a class="nav-link" href="<%= request.getContextPath() %>/application.do?action=getListOrders">Exibir Pedidos</a></li>
 				<li class="nav-item"><a class="nav-link" href="<%= request.getContextPath() %>/application.do?action=logout">Logout</a></li>
-				<li class="nav-item"><%= user.getName() %></li>
+				<li class="nav-item"><a class = "nav-link"><%= user.getName() %></a></li>
 			</ul>
 		</div>
 	</div>
