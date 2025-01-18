@@ -10,7 +10,7 @@ public interface PedidoDao {
 	boolean update(int id, Pedido updatedPedido);
 	boolean delete(int id);
 	
-	List<Pedido> retrieve(User user);
-	List<Pedido> retrieveFindByName(User user, String name);
-	Pedido findById(int id);
+	List<Pedido> retrieveAll();
+	List<Pedido> retrieveByName(User user, String name);
+	Pedido retrieveById(int id);
 }

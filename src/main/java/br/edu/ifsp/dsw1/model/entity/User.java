@@ -9,7 +9,6 @@ public class User {
 	private String email;
 	private String name;
 	private String password;
-	private List<Pedido> pedidos;
 	
 	public User(String name, String email, String password) {
 		init(name, email, password);
@@ -39,18 +38,6 @@ public class User {
 		this.password = password;
 	}
 	
-	public void addPedido(Pedido pedido) {
-		pedidos.add(new Pedido(pedido.getIdPedido(), pedido.getNomeCliente(), pedido.getEndereco(), pedido.getDescricao(), pedido.getValor()));
-	}
-	
-	public List<Pedido> getPedidos() {
-		return new ArrayList<Pedido>(pedidos);
-	}
-	
-	public void clearPedidos() {
-		pedidos.clear();
-	}
-	
 	public static boolean autenticate(User userFromSystem, String email, String password) {
 		if (userFromSystem != null) {
 			return password.equals(userFromSystem.password) && email.equals(userFromSystem.email);
@@ -62,7 +49,6 @@ public class User {
 		this.name = name;
 		this.email = email;
 		this.password = password;
-		pedidos = new LinkedList<Pedido>();
 	}
 	
 }

@@ -8,6 +8,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import br.edu.ifsp.dsw1.controller.command.Command;
+import br.edu.ifsp.dsw1.controller.command.ListOrdersCommand;
+import br.edu.ifsp.dsw1.controller.command.DeleteOrderCommand;
 import br.edu.ifsp.dsw1.controller.command.RegisterOrderCommand;
 import br.edu.ifsp.dsw1.controller.command.RegisterOrderFormCommand;
 import br.edu.ifsp.dsw1.controller.command.RegisterUserCommand;
@@ -39,12 +41,16 @@ public class ApplicationServlet extends HttpServlet {
 			command = new RegisterUserFormCommand();
 		} else if("getRegisterOrderForm".equals(action)) {
 			command = new RegisterOrderFormCommand();
+		} else if("getListOrders".equals(action)) {
+			command = new ListOrdersCommand();
 		} else if("registerUser".equals(action)) {
 			command = new RegisterUserCommand();
 		} else if("registerOrder".equals(action)) {
 			command = new RegisterOrderCommand();
 		} else if ("logout".equals(action)) {
 			command = new LogoutCommand();
+		}else if ("deleteOrder".equals(action)) {
+			command = new DeleteOrderCommand();
 		}/* else if ("newContact".equals(action)) {
 			command = new SaveContactCommand();
 		} else if ("getForm".equals(action)) {

@@ -3,6 +3,7 @@ package br.edu.ifsp.dsw1.model.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import java.util.LinkedList;
 import br.edu.ifsp.dsw1.model.dao.connection.DatabaseConnection;
 import br.edu.ifsp.dsw1.model.entity.Pedido;
 import br.edu.ifsp.dsw1.model.entity.User;
@@ -14,14 +15,16 @@ public class DatabasePedidoDao implements PedidoDao{
 	private static final String DELETE = "DELETE FROM tb_pedidos WHERE id_pedido = ?";
 	
 	private static final String SELECT_BY_NAME = "SELECT * FROM tb_pedidos WHERE name_cliente LIKE ? AND user = ? ORDER BY name_cliente";
-	private static final String SELECT_ALL = "SELECT * FROM tb_pedidos WHERE user = ? ORDER BY name_cliente";
+	private static final String SELECT_ALL = "SELECT * FROM tb_pedidos ORDER BY id_pedido";
 	private static final String SELECT_BY_ID = "SELECT * FROM tb_pedidos WHERE id_pedido = ?";
 	
 
 	@Override
 	public boolean create(User user, Pedido pedido) {
+		int rows = 0;
+		
 		if (pedido != null) {
-			int rows = 0;
+			
 			try ( var connection = DatabaseConnection.getConnection();
 				  var preparedStatement = connection.prepareStatement(INSERT)) {
 
@@ -32,23 +35,22 @@ public class DatabasePedidoDao implements PedidoDao{
 				preparedStatement.setString(5, user.getEmail());
 				rows = preparedStatement.executeUpdate();
 
-				if (rows > 0) {
-					user.addPedido(pedido);
-				}
+				//if (rows > 0) user.addPedido(pedido);
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-
-			return rows > 0;
 		}
-		return false;
+		
+		return rows > 0;
 	}
 
 	@Override
 	public boolean update(int id, Pedido updatedPedido) {
+		int rows = 0;
 		
 		if (updatedPedido != null) {
-			int rows = 0;
+			
 			try ( var connection = DatabaseConnection.getConnection();
 				  var preparedStatement = connection.prepareStatement(UPDATE)){
 				
@@ -63,10 +65,9 @@ public class DatabasePedidoDao implements PedidoDao{
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			return rows > 0;
 		}
 		
-		return false;
+		return rows > 0;
 	}
 
 	@Override
@@ -87,17 +88,39 @@ public class DatabasePedidoDao implements PedidoDao{
 	}
 
 	@Override
-	public List<Pedido> retrieve(User user) {
+	public List<Pedido> retrieveAll() {
+		List<Pedido> pedidos = new LinkedList<Pedido>();
+
+		try (var connection = DatabaseConnection.getConnection();
+			 var preparedStatement = connection.prepareStatement(SELECT_ALL)){
+					
+			var result = preparedStatement.executeQuery();
+
+			while (result.next()) {
+				
+				var pedido = new Pedido();
+				pedido.setIdProduto(result.getInt("id_pedido"));
+				pedido.setNomeCliente(result.getString("name_cliente"));
+				pedido.setEndereco(result.getString("endereco"));
+				pedido.setDescricao(result.getString("descricao"));
+				pedido.setValor(result.getDouble("valor"));
+				pedidos.add(pedido);
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return pedidos;
+	}
+
+	@Override
+	public List<Pedido> retrieveByName(User user, String name) {
 		return null;
 	}
 
 	@Override
-	public List<Pedido> retrieveFindByName(User user, String name) {
-		return null;
-	}
-
-	@Override
-	public Pedido findById(int id) {
+	public Pedido retrieveById(int id) {
 		return null;
 	}
 

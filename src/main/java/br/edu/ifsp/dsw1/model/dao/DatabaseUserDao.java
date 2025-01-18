@@ -14,6 +14,7 @@ class DatabaseUserDao implements UserDao {
 	@Override
 	public boolean insert(User user) {
 		int rows = 0;
+		
 		if (user != null) {
 			try( var connection = DatabaseConnection.getConnection();
 				 var statement = connection.prepareStatement(INSERT)){
@@ -28,35 +29,37 @@ class DatabaseUserDao implements UserDao {
 				e.printStackTrace();
 			}
 		}
+		
 		return rows > 0;
 	}
 
 	@Override
 	public User findByEmail(String email) {
 		User user = null;
+		
 		try ( var connection = DatabaseConnection.getConnection();
-			  var statement = connection.prepareStatement(SELECT_BY_EMAIL);
-			  var pedidoStatement = connection.prepareStatement("SELECT * FROM tb_pedidos WHERE user = ?")) {
+			  var statement = connection.prepareStatement(SELECT_BY_EMAIL)
+			  /*var pedidoStatement = connection.prepareStatement("SELECT * FROM tb_pedidos WHERE user = ?")*/) {
 			
 			statement.setString(1, email);
 			var resultSet = statement.executeQuery();
 			if (resultSet.next()) {
 				user = new User(resultSet.getString("name"), resultSet.getString("email"), resultSet.getString("password"));
 				
-				pedidoStatement.setString(1, email);
+				/*pedidoStatement.setString(1, email);
 	            var pedidoResultSet = pedidoStatement.executeQuery();
 
 	            while (pedidoResultSet.next()) {
 	                Pedido pedido = new Pedido(
 	                		pedidoResultSet.getInt("id_pedido"),
-	                		pedidoResultSet.getString("nome_cliente"),
+	                		pedidoResultSet.getString("name_cliente"),
 	                		pedidoResultSet.getString("endereco"),
 	                		pedidoResultSet.getString("descricao"),
 	                		pedidoResultSet.getDouble("valor")
 	                );
 	                
 	                user.getPedidos().add(pedido);
-	            }
+	            }*/
 			}
 			
 		} catch (SQLException e) {
