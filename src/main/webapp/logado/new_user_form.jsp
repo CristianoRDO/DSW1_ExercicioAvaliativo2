@@ -46,7 +46,7 @@
 					placeholder="Digite a Senha do Usuário." required="required">
 			</div>
 
-			<button type="submit" class="btn btn-warning"
+			<button type="submit" class="btn btn-dark"
 				style="text-align: center;">Salvar Usuário</button>
 		</form>
 	</main>

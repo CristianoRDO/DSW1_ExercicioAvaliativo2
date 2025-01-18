@@ -56,7 +56,7 @@
 			
 			<input type="hidden" id="id" name="id" value="<%= pedido.getIdPedido() %>">
 
-			<button type="submit" class="btn btn-warning"
+			<button type="submit" class="btn btn-dark"
 				style="text-align: center;">Salvar Pedido</button>
 		</form>
 	</main>

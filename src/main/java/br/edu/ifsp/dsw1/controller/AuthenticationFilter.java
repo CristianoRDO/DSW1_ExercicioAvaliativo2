@@ -12,7 +12,7 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
-@WebFilter(urlPatterns = {"/logado/*"})
+@WebFilter(urlPatterns = {"/logado/*", "/application.do"})
 public class AuthenticationFilter implements Filter {
 
 	@Override

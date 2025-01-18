@@ -52,7 +52,7 @@
 					placeholder="Digite o Valor do Produto." required="required">
 			</div>
 
-			<button type="submit" class="btn btn-warning"
+			<button type="submit" class="btn btn-dark"
 				style="text-align: center;">Salvar Pedido</button>
 		</form>
 	</main>

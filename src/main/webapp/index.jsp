@@ -32,7 +32,7 @@
 					placeholder="Informe a senha" required="required">
 			</div>
 
-			<button type="submit" class="btn btn-warning"
+			<button type="submit" class="btn btn-dark"
 				style="text-align: center;">Entrar</button>
 				
 		</form>

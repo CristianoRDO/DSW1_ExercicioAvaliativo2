@@ -29,7 +29,7 @@
 			<form action="application.do?action=searchOrderClient" method="post" class = "no-border">
 				<div class="input-group mb-3">
 					<input type="text" class="form-control" name="name" placeholder="Informe o Nome do Cliente">
-					<button class="btn btn-outline-warning" type="submit" id="button-addon2">Buscar</button>
+					<button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
 				</div>
 			</form>
 		</div>
@@ -64,7 +64,7 @@
 				        </a>
 				    </td>
 				    <td>
-				        <a class="btn btn-outline-danger" 
+				        <a class="btn btn-outline-warning" 
 				           href="application.do?action=getUpdateOrderForm&id=<%= pedido.getIdPedido() %>">
 				           Editar
 				        </a>

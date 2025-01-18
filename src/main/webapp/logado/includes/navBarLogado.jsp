@@ -4,7 +4,7 @@
 	
 <% var user = (User) session.getAttribute("user"); %>
 
-<nav class="navbar navbar-expand-lg bg-warning">
+<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="<%= request.getContextPath() %>/application.do?action=logged">HOME</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
