@@ -44,6 +44,7 @@
 					<th scope="col">Endereço de Entrega</th>
 					<th scope="col">Valor do Pedido</th>
 					<th scope="col">Descrição</th>
+					<th scope="col">Funcionário</th>
 				</tr>
 			</thead>
 			<tbody class="table-group-divider">
@@ -56,6 +57,7 @@
 				    <td><%= pedido.getEndereco() %></td>
 				    <td><%= pedido.getValor() %></td>
 				    <td><%= pedido.getDescricao() %></td>
+				    <td><%= pedido.getUser().getEmail() %></td>
 				    <td>
 				        <a class="btn btn-outline-danger" 
 				           onclick="return confirm('Confirma a exclusão?');" 

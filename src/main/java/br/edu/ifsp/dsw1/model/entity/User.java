@@ -1,9 +1,5 @@
 package br.edu.ifsp.dsw1.model.entity;
 
-import java.util.LinkedList;
-import java.util.ArrayList;
-import java.util.List;
-
 public class User {
 
 	private String email;

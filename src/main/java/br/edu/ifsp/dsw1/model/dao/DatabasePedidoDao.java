@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.LinkedList;
 import br.edu.ifsp.dsw1.model.dao.connection.DatabaseConnection;
 import br.edu.ifsp.dsw1.model.entity.Pedido;
-import br.edu.ifsp.dsw1.model.entity.User;
 
 public class DatabasePedidoDao implements PedidoDao{
 	
@@ -18,9 +17,14 @@ public class DatabasePedidoDao implements PedidoDao{
 	private static final String SELECT_ALL = "SELECT * FROM tb_pedidos ORDER BY id_pedido";
 	private static final String SELECT_BY_ID = "SELECT * FROM tb_pedidos WHERE id_pedido = ?";
 	
+	private UserDao dao;
+	
+	public DatabasePedidoDao(UserDao dao) {
+		this.dao = dao;
+	}
 
 	@Override
-	public boolean create(User user, Pedido pedido) {
+	public boolean create(Pedido pedido) {
 		int rows = 0;
 		
 		if (pedido != null) {
@@ -32,7 +36,7 @@ public class DatabasePedidoDao implements PedidoDao{
 				preparedStatement.setString(2, pedido.getEndereco());
 				preparedStatement.setDouble(3, pedido.getValor());
 				preparedStatement.setString(4, pedido.getDescricao());
-				preparedStatement.setString(5, user.getEmail());
+				preparedStatement.setString(5, pedido.getUser().getEmail());
 				rows = preparedStatement.executeUpdate();
 				
 			} catch (SQLException e) {
@@ -97,13 +101,16 @@ public class DatabasePedidoDao implements PedidoDao{
 			while (result.next()) {
 				
 				var pedido = new Pedido();
-				pedido.setIdProduto(result.getInt("id_pedido"));
+				pedido.setIdPedido(result.getInt("id_pedido"));
 				pedido.setNomeCliente(result.getString("name_cliente"));
 				pedido.setEndereco(result.getString("endereco"));
 				pedido.setDescricao(result.getString("descricao"));
 				pedido.setValor(result.getDouble("valor"));
-				pedidos.add(pedido);
 				
+				var user = dao.findByEmail(result.getString("user"));
+				pedido.setUser(user);
+				
+				pedidos.add(pedido);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -126,13 +133,16 @@ public class DatabasePedidoDao implements PedidoDao{
 			while (result.next()) {
 				
 				var pedido = new Pedido();
-				pedido.setIdProduto(result.getInt("id_pedido"));
+				pedido.setIdPedido(result.getInt("id_pedido"));
 				pedido.setNomeCliente(result.getString("name_cliente"));
 				pedido.setEndereco(result.getString("endereco"));
 				pedido.setDescricao(result.getString("descricao"));
 				pedido.setValor(result.getDouble("valor"));
-				pedidos.add(pedido);
 				
+				var user = dao.findByEmail(result.getString("user"));
+				pedido.setUser(user);
+				
+				pedidos.add(pedido);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -153,11 +163,14 @@ public class DatabasePedidoDao implements PedidoDao{
 
 			if (result.next()) {
 				pedido = new Pedido();
-				pedido.setIdProduto(result.getInt("id_pedido"));
+				pedido.setIdPedido(result.getInt("id_pedido"));
 				pedido.setNomeCliente(result.getString("name_cliente"));
 				pedido.setEndereco(result.getString("endereco"));
 				pedido.setDescricao(result.getString("descricao"));
 				pedido.setValor(result.getDouble("valor"));
+				
+				var user = dao.findByEmail(result.getString("user"));
+				pedido.setUser(user);
 					
 			}
 		} catch (SQLException e) {

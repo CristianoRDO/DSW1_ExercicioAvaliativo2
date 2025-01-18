@@ -21,7 +21,12 @@ public class UpdateOrderCommand implements Command{
 		var valor = Double.parseDouble(request.getParameter("valor"));
 		
 		var dao = new PedidoDaoFactory().factory();
-		Pedido newPedido = new Pedido(name, endereco, descricao, valor);
+		Pedido newPedido = new Pedido();
+		
+		newPedido.setNomeCliente(name);
+		newPedido.setEndereco(endereco);
+		newPedido.setDescricao(descricao);
+		newPedido.setValor(valor);
 		
 		dao.update(id, newPedido);
 

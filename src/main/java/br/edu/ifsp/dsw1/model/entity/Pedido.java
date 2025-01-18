@@ -7,26 +7,27 @@ public class Pedido {
 	private String endereco;
 	private String descricao;
 	private double valor;
+	private User user;
 	
 	public Pedido(){}
 	
-	public Pedido(String nomeCliente, String endereco, String descricao, double valor) {
+	public Pedido(String nomeCliente, String endereco, String descricao, double valor, User user) {
 		this.nomeCliente = nomeCliente;
 		this.endereco = endereco;
 		this.descricao = descricao;
 		this.valor = valor;
+		this.user = user;
 	}
 	
-	// Permitir a criação de Objetos do Tipo pedido antes de armazenalos no banco (id gerado automaticamente durante a inserção).
-	public Pedido(int idPedido, String nomeCliente, String endereco, String descricao, double valor) {
-		this(nomeCliente, endereco, descricao, valor);
+	public Pedido(int idPedido, String nomeCliente, String endereco, String descricao, double valor, User user) {
+		this(nomeCliente, endereco, descricao, valor, user);
 		this.idPedido = idPedido;
 	}
 	
 	public int getIdPedido() {
 		return idPedido;
 	}
-	public void setIdProduto(int idPedido) {
+	public void setIdPedido(int idPedido) {
 		this.idPedido = idPedido;
 	}
 	public String getNomeCliente() {
@@ -53,10 +54,13 @@ public class Pedido {
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
-	
-	
-	
-	
-	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 	
 }

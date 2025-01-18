@@ -10,7 +10,7 @@
 		<h1 style="text-align: center; margin: 30px;">Log In</h1>
 
 		<%
-		String msg = (String) request.getAttribute("message");
+		String msg = (String) request.getAttribute("mensagem");
 		if (msg != null ) {
 			out.println("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">");
 			out.println(msg);

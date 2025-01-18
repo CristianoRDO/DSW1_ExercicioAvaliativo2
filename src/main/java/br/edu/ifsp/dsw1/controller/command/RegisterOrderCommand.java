@@ -25,8 +25,8 @@ public class RegisterOrderCommand implements Command{
 		
 		PedidoDao dao = new PedidoDaoFactory().factory();
 		
-		Pedido pedido = new Pedido(name, endereco, descricao, valor);
-		boolean saved = dao.create(user, pedido);
+		Pedido pedido = new Pedido(name, endereco, descricao, valor, user);
+		boolean saved = dao.create(pedido);
 		
 		String mensagem;
 		if (saved) {

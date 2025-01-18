@@ -25,7 +25,7 @@ public class AuthenticationFilter implements Filter {
 		if (session != null && session.getAttribute("user") != null) {
 			chain.doFilter(request, response);
 		} else {
-			request.setAttribute("message", "Acesso Negado. Realize Login.");
+			request.setAttribute("mensagem", "Acesso Negado. Realize Login.");
 			
 			var dispatcher = request.getRequestDispatcher("front.do?action=error");
 			dispatcher.forward(request, response);
