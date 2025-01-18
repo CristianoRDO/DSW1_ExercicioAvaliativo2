@@ -15,12 +15,13 @@ public class DatabasePedidoDao implements PedidoDao{
 	
 	private static final String SELECT_BY_NAME = "SELECT * FROM tb_pedidos WHERE name_cliente LIKE ? AND user = ? ORDER BY name_cliente";
 	private static final String SELECT_ALL = "SELECT * FROM tb_pedidos WHERE user = ? ORDER BY name_cliente";
+	private static final String SELECT_BY_ID = "SELECT * FROM tb_pedidos WHERE id_pedido = ?";
 	
 
 	@Override
 	public boolean create(User user, Pedido pedido) {
 		if (pedido != null) {
-			int rows = -1;
+			int rows = 0;
 			try ( var connection = DatabaseConnection.getConnection();
 				  var preparedStatement = connection.prepareStatement(INSERT)) {
 
@@ -45,12 +46,44 @@ public class DatabasePedidoDao implements PedidoDao{
 
 	@Override
 	public boolean update(int id, Pedido updatedPedido) {
+		
+		if (updatedPedido != null) {
+			int rows = 0;
+			try ( var connection = DatabaseConnection.getConnection();
+				  var preparedStatement = connection.prepareStatement(UPDATE)){
+				
+				preparedStatement.setString(1, updatedPedido.getNomeCliente());
+				preparedStatement.setString(2, updatedPedido.getEndereco());
+				preparedStatement.setDouble(3, updatedPedido.getValor());
+				preparedStatement.setString(4, updatedPedido.getDescricao());
+				preparedStatement.setInt(5, id);
+
+				rows = preparedStatement.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return rows > 0;
+		}
+		
 		return false;
 	}
 
 	@Override
 	public boolean delete(int id) {
-		return false;
+		int rows = 0;
+		
+		try (var connection = DatabaseConnection.getConnection();
+			 var preparedStatement = connection.prepareStatement(DELETE)) {
+			
+				preparedStatement.setInt(1, id);
+
+				rows = preparedStatement.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		
+		return rows > 0;
 	}
 
 	@Override
