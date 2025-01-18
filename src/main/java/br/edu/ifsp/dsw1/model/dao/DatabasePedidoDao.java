@@ -14,7 +14,7 @@ public class DatabasePedidoDao implements PedidoDao{
 	private static final String UPDATE = "UPDATE tb_pedidos SET name_cliente = ?, endereco = ?, valor = ?, descricao = ? WHERE id_pedido = ?";
 	private static final String DELETE = "DELETE FROM tb_pedidos WHERE id_pedido = ?";
 	
-	private static final String SELECT_BY_NAME = "SELECT * FROM tb_pedidos WHERE name_cliente LIKE ? AND user = ? ORDER BY name_cliente";
+	private static final String SELECT_BY_NAME = "SELECT * FROM tb_pedidos WHERE name_cliente LIKE ? ORDER BY name_cliente";
 	private static final String SELECT_ALL = "SELECT * FROM tb_pedidos ORDER BY id_pedido";
 	private static final String SELECT_BY_ID = "SELECT * FROM tb_pedidos WHERE id_pedido = ?";
 	
@@ -34,8 +34,6 @@ public class DatabasePedidoDao implements PedidoDao{
 				preparedStatement.setString(4, pedido.getDescricao());
 				preparedStatement.setString(5, user.getEmail());
 				rows = preparedStatement.executeUpdate();
-
-				//if (rows > 0) user.addPedido(pedido);
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -115,8 +113,32 @@ public class DatabasePedidoDao implements PedidoDao{
 	}
 
 	@Override
-	public List<Pedido> retrieveByName(User user, String name) {
-		return null;
+	public List<Pedido> retrieveByName(String name) {
+		List<Pedido> pedidos = new LinkedList<Pedido>();
+
+		try (var connection = DatabaseConnection.getConnection();
+			 var preparedStatement = connection.prepareStatement(SELECT_BY_NAME)){
+			
+			name = "%" + name + "%";		
+			preparedStatement.setString(1, name);
+			var result = preparedStatement.executeQuery();
+
+			while (result.next()) {
+				
+				var pedido = new Pedido();
+				pedido.setIdProduto(result.getInt("id_pedido"));
+				pedido.setNomeCliente(result.getString("name_cliente"));
+				pedido.setEndereco(result.getString("endereco"));
+				pedido.setDescricao(result.getString("descricao"));
+				pedido.setValor(result.getDouble("valor"));
+				pedidos.add(pedido);
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return pedidos;
 	}
 
 	@Override

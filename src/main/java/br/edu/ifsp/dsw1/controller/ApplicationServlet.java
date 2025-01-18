@@ -11,6 +11,7 @@ import br.edu.ifsp.dsw1.controller.command.Command;
 import br.edu.ifsp.dsw1.controller.command.ListOrdersCommand;
 import br.edu.ifsp.dsw1.controller.command.DeleteOrderCommand;
 import br.edu.ifsp.dsw1.controller.command.UpdateOrderCommand;
+import br.edu.ifsp.dsw1.controller.command.SearchOrderCommand;
 import br.edu.ifsp.dsw1.controller.command.UpdateOrderFormCommand;
 import br.edu.ifsp.dsw1.controller.command.RegisterOrderCommand;
 import br.edu.ifsp.dsw1.controller.command.RegisterOrderFormCommand;
@@ -57,7 +58,9 @@ public class ApplicationServlet extends HttpServlet {
 			command = new DeleteOrderCommand();
 		} else if ("updateOrder".equals(action)) {
 			command = new UpdateOrderCommand();
-		} else{
+		} else if ("searchOrderClient".equals(action)) {
+			command = new SearchOrderCommand();
+		}else{
 			command = new ErrorCommand();
 		}
 		

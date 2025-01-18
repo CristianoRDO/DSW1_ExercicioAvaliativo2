@@ -53,6 +53,8 @@
 					type="number" class="form-control" id="valor" name="valor"
 					placeholder="Digite o Valor do Produto." required="required" value = "<%= pedido.getValor() %>">
 			</div>
+			
+			<input type="hidden" id="id" name="id" value="<%= pedido.getIdPedido() %>">
 
 			<button type="submit" class="btn btn-warning"
 				style="text-align: center;">Salvar Pedido</button>

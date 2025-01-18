@@ -17,7 +17,7 @@
 	<main class="container-sm flex-grow-1  justify-content-center">
 
 		<%
-		String msg = (String) request.getAttribute("errorMessage");
+		String msg = (String) request.getAttribute("mensagem");
 		if (msg != null ) {
 			out.println("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">");
 			out.println(msg);
@@ -26,9 +26,9 @@
 		%>
 
 		<div style="margin-top: 24px;">
-			<form action="contact.do?action=searchContact" method="post" class = "no-border">
+			<form action="application.do?action=searchOrderClient" method="post" class = "no-border">
 				<div class="input-group mb-3">
-					<input type="text" class="form-control" name="textName" placeholder="Informe o Nome do Cliente">
+					<input type="text" class="form-control" name="name" placeholder="Informe o Nome do Cliente">
 					<button class="btn btn-outline-warning" type="submit" id="button-addon2">Buscar</button>
 				</div>
 			</form>
