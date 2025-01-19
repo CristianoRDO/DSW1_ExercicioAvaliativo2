@@ -38,28 +38,12 @@ class DatabaseUserDao implements UserDao {
 		User user = null;
 		
 		try ( var connection = DatabaseConnection.getConnection();
-			  var statement = connection.prepareStatement(SELECT_BY_EMAIL)
-			  /*var pedidoStatement = connection.prepareStatement("SELECT * FROM tb_pedidos WHERE user = ?")*/) {
+			  var statement = connection.prepareStatement(SELECT_BY_EMAIL)) {
 			
 			statement.setString(1, email);
 			var resultSet = statement.executeQuery();
 			if (resultSet.next()) {
 				user = new User(resultSet.getString("name"), resultSet.getString("email"), resultSet.getString("password"));
-				
-				/*pedidoStatement.setString(1, email);
-	            var pedidoResultSet = pedidoStatement.executeQuery();
-
-	            while (pedidoResultSet.next()) {
-	                Pedido pedido = new Pedido(
-	                		pedidoResultSet.getInt("id_pedido"),
-	                		pedidoResultSet.getString("name_cliente"),
-	                		pedidoResultSet.getString("endereco"),
-	                		pedidoResultSet.getString("descricao"),
-	                		pedidoResultSet.getDouble("valor")
-	                );
-	                
-	                user.getPedidos().add(pedido);
-	            }*/
 			}
 			
 		} catch (SQLException e) {

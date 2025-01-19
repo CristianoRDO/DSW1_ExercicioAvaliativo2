@@ -22,6 +22,11 @@ import br.edu.ifsp.dsw1.controller.command.LoggedCommand;
 import br.edu.ifsp.dsw1.controller.command.LogoutCommand;
 
 
+/**
+ * Servlet principal da aplicação, responsável por gerenciar todas as requisições relacionadas 
+ * ao fluxo principal do sistema (inserção, listagem, exclusão, edição, etc.).
+ */
+
 @WebServlet("/application.do")
 public class ApplicationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

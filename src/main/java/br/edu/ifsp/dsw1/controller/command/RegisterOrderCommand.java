@@ -21,6 +21,7 @@ public class RegisterOrderCommand implements Command{
 		var descricao = request.getParameter("descricao");
 		var valor = Double.parseDouble(request.getParameter("valor"));
 		
+		// Recuperando usuário salvo na sessão para atribuí-lo ao pedido.
 		var user = (User) request.getSession(false).getAttribute("user");
 		
 		PedidoDao dao = new PedidoDaoFactory().factory();
@@ -29,6 +30,7 @@ public class RegisterOrderCommand implements Command{
 		boolean saved = dao.create(pedido);
 		
 		String mensagem;
+		
 		if (saved) {
 			mensagem = "Pedido Registrado com Sucesso!";
 		} else {

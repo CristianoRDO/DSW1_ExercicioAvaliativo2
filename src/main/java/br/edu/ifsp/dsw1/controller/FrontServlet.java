@@ -11,6 +11,8 @@ import br.edu.ifsp.dsw1.controller.command.Command;
 import br.edu.ifsp.dsw1.controller.command.ErrorCommand;
 import br.edu.ifsp.dsw1.controller.command.LoginCommand;
 
+// Servlet responsável por gerenciar todas as requisições relacionadas ao login no sistema.
+
 @WebServlet("/front.do")
 public class FrontServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

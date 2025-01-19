@@ -17,10 +17,9 @@ public class ListOrdersCommand implements Command{
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		//var user = (User) request.getSession(false).getAttribute("user");
-		
 		PedidoDao dao = new PedidoDaoFactory().factory();
 		
+		// Buscando os pedidos registrados no banco e armazenando-os como atributo na sessão, para exibição ao usuário.
 		List<Pedido> pedidos = dao.retrieveAll();
 		request.setAttribute("pedidos", pedidos);
 		

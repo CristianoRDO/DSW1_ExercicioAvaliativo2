@@ -7,6 +7,18 @@ import java.util.LinkedList;
 import br.edu.ifsp.dsw1.model.dao.connection.DatabaseConnection;
 import br.edu.ifsp.dsw1.model.entity.Pedido;
 
+/**
+ * Implementação do DAO para a entidade Pedido, responsável por realizar as operações
+ * de CRUD (Create, Read, Update e Delete) no banco de dados para a tabela "tb_pedidos".
+ * 
+ * Esta classe utiliza o UserDao como dependência, pois a entidade Pedido possui um relacionamento
+ * com a entidade User, sendo necessário obter informações de um usuário associado a um pedido.
+ * 
+ * A dependência do UserDao é injetada via construtor para garantir que a lógica de manipulação
+ * de usuários associados a pedidos seja gerenciada adequadamente. Isso permite buscar os
+ * dados completos do usuário ao recuperar ou manipular pedidos.
+ * */
+
 public class DatabasePedidoDao implements PedidoDao{
 	
 	private static final String INSERT = "INSERT INTO tb_pedidos (name_cliente, endereco, valor, descricao, user) VALUES (?, ?, ?, ?, ?)";
@@ -107,6 +119,7 @@ public class DatabasePedidoDao implements PedidoDao{
 				pedido.setDescricao(result.getString("descricao"));
 				pedido.setValor(result.getDouble("valor"));
 				
+				// Buscar o usuário atrelado aquele pedido e adicioná-lo no objeto.
 				var user = dao.findByEmail(result.getString("user"));
 				pedido.setUser(user);
 				
@@ -139,6 +152,7 @@ public class DatabasePedidoDao implements PedidoDao{
 				pedido.setDescricao(result.getString("descricao"));
 				pedido.setValor(result.getDouble("valor"));
 				
+				// Buscar o usuário atrelado aquele pedido e adicioná-lo no objeto.
 				var user = dao.findByEmail(result.getString("user"));
 				pedido.setUser(user);
 				
@@ -169,6 +183,7 @@ public class DatabasePedidoDao implements PedidoDao{
 				pedido.setDescricao(result.getString("descricao"));
 				pedido.setValor(result.getDouble("valor"));
 				
+				// Buscar o usuário atrelado aquele pedido e adicioná-lo no objeto.
 				var user = dao.findByEmail(result.getString("user"));
 				pedido.setUser(user);
 					

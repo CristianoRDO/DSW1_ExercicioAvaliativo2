@@ -23,6 +23,12 @@ public class UpdateOrderCommand implements Command{
 		var dao = new PedidoDaoFactory().factory();
 		Pedido newPedido = new Pedido();
 		
+		/* 
+		 * Utilizando o construtor vazio da classe Pedido para setar os atributos recuperados,
+		 * sem alterar o id ou o usuário atrelado ao pedido. Somente as informações que podem ser modificadas são alteradas.
+		 * 
+		 */
+		
 		newPedido.setNomeCliente(name);
 		newPedido.setEndereco(endereco);
 		newPedido.setDescricao(descricao);

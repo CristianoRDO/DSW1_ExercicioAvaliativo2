@@ -12,6 +12,12 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
+/**
+ * Filtro de autenticação responsável por proteger URLs específicas, garantindo que apenas 
+ * usuários autenticados possam acessá-las. Caso o usuário não esteja autenticado, é redirecionado 
+ * para a página login, exibindo uma mensagem de erro.
+ */
+
 @WebFilter(urlPatterns = {"/logado/*", "/application.do"})
 public class AuthenticationFilter implements Filter {
 

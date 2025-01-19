@@ -24,7 +24,6 @@ public class LoginCommand implements Command{
 		if (autorized) {
 			var session = request.getSession(true);
 			session.setAttribute("user", user);
-			session.setMaxInactiveInterval(24 * 60 * 60);
 			view = "application.do?action=logged";
 		} else {
 			request.setAttribute("mensagem", "Usuário ou Senha inválido.");

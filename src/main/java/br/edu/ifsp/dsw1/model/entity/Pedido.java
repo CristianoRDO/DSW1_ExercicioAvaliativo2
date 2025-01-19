@@ -1,5 +1,24 @@
 package br.edu.ifsp.dsw1.model.entity;
 
+/**
+ * Classe que representa a entidade Pedido, modelando os dados e comportamentos
+ * relacionados a um pedido no sistema.
+ * 
+ * A entidade Pedido possui um relacionamento com a entidade User, que representa
+ * o usuário associado ao pedido. Esse relacionamento é modelado por meio do atributo
+ * "user", permitindo associar cada pedido a um usuário específico.
+ * 
+ * Construtores:
+ * - Construtor vazio: utilizado para criar objetos de Pedido que serão usados em operações
+ *   de atualização (update), onde não é necessário alterar atributos como `idPedido` ou `user`.
+ * 
+ * - Construtor sem ID: usado para criar instâncias de Pedido antes de cadastrá-las no banco de dados,
+ *   pois o ID do pedido é gerado automaticamente pelo banco.
+ * 
+ * - Construtor completo: utilizado para criar objetos de Pedido com todos os atributos preenchidos,
+ *   incluindo o ID. É utilizado para construir objetos retornados em consultas SQL.
+ */
+
 public class Pedido {
 	
 	private int idPedido;

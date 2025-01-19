@@ -19,6 +19,7 @@ public class UpdateOrderFormCommand implements Command{
 		
 		PedidoDao dao = new PedidoDaoFactory().factory();
 		
+		// Recuperar o pedido indicado para alteração para pré-preencher o formulário com os dados do pedido.
 		Pedido pedido = dao.retrieveById(id);
 		
 		request.setAttribute("pedido", pedido);
