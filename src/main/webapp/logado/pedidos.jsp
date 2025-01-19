@@ -55,7 +55,7 @@
 				    <th scope="row"><%= pedido.getIdPedido() %></th>
 				    <td><%= pedido.getNomeCliente() %></td>
 				    <td><%= pedido.getEndereco() %></td>
-				    <td><%= pedido.getValor() %></td>
+				    <td>R$ <%= pedido.getValor() %></td>
 				    <td><%= pedido.getDescricao() %></td>
 				    <td><%= pedido.getUser().getEmail() %></td>
 				    <td>
