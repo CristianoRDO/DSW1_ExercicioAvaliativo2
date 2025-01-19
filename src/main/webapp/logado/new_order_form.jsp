@@ -49,7 +49,7 @@
 				<label for="password" class="form-label">Valor:</label> 
 				<input
 					type="number" class="form-control" id="valor" name="valor"
-					placeholder="Digite o Valor do Produto." required="required">
+					placeholder="Digite o Valor do Produto." required="required" step = "0.01">
 			</div>
 
 			<button type="submit" class="btn btn-dark"

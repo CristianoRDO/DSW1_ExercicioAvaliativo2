@@ -51,7 +51,7 @@
 				<label for="password" class="form-label">Valor:</label> 
 				<input
 					type="number" class="form-control" id="valor" name="valor"
-					placeholder="Digite o Valor do Produto." required="required" value = "<%= pedido.getValor() %>">
+					placeholder="Digite o Valor do Produto." required="required" value = "<%= pedido.getValor() %>" step = "0.01">
 			</div>
 			
 			<input type="hidden" id="id" name="id" value="<%= pedido.getIdPedido() %>">
